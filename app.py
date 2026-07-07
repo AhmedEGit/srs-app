@@ -2,8 +2,13 @@ import streamlit as st
 import pandas as pd
 import duckdb
 
-st.write("Hello world !")
+st.write("""
+# SQL revision
+Spaced repetition system SQL
+""")
 
+option = st.selectbox("What would you like to revise ?", ["joins", "group by","window functions"])
+st.write("you choose", option)
 dataf = pd.DataFrame({"a": [1, 2, 3], "b": [9, 8, 7]})
 st.dataframe(dataf)
 
