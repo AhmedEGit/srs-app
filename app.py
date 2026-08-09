@@ -11,13 +11,14 @@ st.write("""
 Spaced repetition system SQL
 """)
 
-con = duckdb.connect(database="database/exercises_sql_tables.duckdb",read_only=False)
-
+con = duckdb.connect(database="database/exercises_sql_tables.duckdb", read_only=False)
 
 with st.sidebar:
     theme = st.selectbox(
-        "What would you like to revise ?", ["cross joins", "group by", "window functions"],index=None,
-        placeholder="Select a theme ..."
+        "What would you like to revise ?",
+        ["cross joins", "group by", "window functions"],
+        index=None,
+        placeholder="Select a theme ...",
     )
     st.write("you selected", theme)
     exercise = con.execute(f"SELECT * FROM memory_state WHERE theme = '{theme}'").df()
@@ -50,7 +51,7 @@ if query:
 tab2, tab3 = st.tabs(["Tables", "Solution"])
 
 with tab2:
-    exercise_tables = ast.literal_eval(exercise.loc[0,"tables"])
+    exercise_tables = ast.literal_eval(exercise.loc[0, "tables"])
     for table in exercise_tables:
         st.write(f"Table : {table}")
         df_table = con.execute(f"SELECT * FROM {table}").df()
